@@ -6,14 +6,14 @@ If you are new to robotics and want to get started quickly, you are in the right
 To get started, you will need the following hardware and software:  
 
 **Hardware:**  
-* [Pico W Student Kit - CircuitPython for Beginner](https://my.cytron.io/p-robo-pico-kit-5-in-1-robot)   
+* [Robo Pico Kit (5 in 1 Robot)](https://my.cytron.io/p-robo-pico-kit-5-in-1-robot)   
 
 **Software:**  
 * [Thonny IDE](https://thonny.org/)  
 
 ## Documentation  
-For more information on the Raspberry Pi Pico W, check out the datasheet here:  
-[Raspberry Pi Pico W Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf)  
+For more information on the Robo Pico, check out the datasheet here:  
+[Robo Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf)  
 
 ## Support  
-If you need further assistance, please email to technical team (support@cytron.io) and our team will be happy to assist you.
+If you need further assistance, please contact us at (https://m.me/cytrontech) or email to technical team (support@cytron.io) and our team will be happy to assist you.
