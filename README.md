@@ -13,7 +13,7 @@ To get started, you will need the following hardware and software:
 
 ## Documentation  
 For more information on the Robo Pico, check out the datasheet here:  
-[Robo Pico Datasheet]([https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf](https://docs.google.com/document/d/1X67yKga7m5pugBcogww6pyR2YHXwRJL79_nNDLTYcKU/edit?usp=sharing))  
+[Robo Pico Datasheet](https://datasheets.raspberrypi.com/picow/pico-w-datasheet.pdf](https://docs.google.com/document/d/1X67yKga7m5pugBcogww6pyR2YHXwRJL79_nNDLTYcKU/edit?usp=sharing)  
 
 ## Support  
 If you need further assistance, please contact us at (https://m.me/cytrontech) or email to technical team (support@cytron.io) and our team will be happy to assist you.
