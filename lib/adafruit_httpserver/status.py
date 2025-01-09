@@ -1,18 +1,19 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 Dan Halbert for Adafruit Industries
+# SPDX-FileCopyrightText: Copyright (c) 2022 Dan Halbert for Adafruit Industries, Michał Pokusa
 #
 # SPDX-License-Identifier: MIT
 """
-`adafruit_httpserver.status.HTTPStatus`
+`adafruit_httpserver.status`
 ====================================================
 * Author(s): Dan Halbert, Michał Pokusa
 """
 
 
-class HTTPStatus:  # pylint: disable=too-few-public-methods
-    """HTTP status codes."""
+class Status:  # pylint: disable=too-few-public-methods
+    """HTTP status code."""
 
     def __init__(self, code: int, text: str):
-        """Define a status code.
+        """
+        Define a status code.
 
         :param int code: Numeric value: 200, 404, etc.
         :param str text: Short phrase: "OK", "Not Found', etc.
@@ -20,30 +21,53 @@ class HTTPStatus:  # pylint: disable=too-few-public-methods
         self.code = code
         self.text = text
 
-    def __repr__(self):
-        return f'HTTPStatus({self.code}, "{self.text}")'
+    def __eq__(self, other: "Status"):
+        return self.code == other.code and self.text == other.text
 
     def __str__(self):
         return f"{self.code} {self.text}"
 
-    def __eq__(self, other: "HTTPStatus"):
-        return self.code == other.code and self.text == other.text
+    def __repr__(self):
+        code = self.code
+        text = self.text
+
+        return f'<Status {code}, "{text}">'
 
 
-class CommonHTTPStatus(HTTPStatus):  # pylint: disable=too-few-public-methods
-    """Common HTTP status codes."""
+SWITCHING_PROTOCOLS_101 = Status(101, "Switching Protocols")
 
-    OK_200 = HTTPStatus(200, "OK")
-    """200 OK"""
+OK_200 = Status(200, "OK")
 
-    BAD_REQUEST_400 = HTTPStatus(400, "Bad Request")
-    """400 Bad Request"""
+CREATED_201 = Status(201, "Created")
 
-    FORBIDDEN_403 = HTTPStatus(403, "Forbidden")
-    """403 Forbidden"""
+ACCEPTED_202 = Status(202, "Accepted")
 
-    NOT_FOUND_404 = HTTPStatus(404, "Not Found")
-    """404 Not Found"""
+NO_CONTENT_204 = Status(204, "No Content")
 
-    INTERNAL_SERVER_ERROR_500 = HTTPStatus(500, "Internal Server Error")
-    """500 Internal Server Error"""
+PARTIAL_CONTENT_206 = Status(206, "Partial Content")
+
+MOVED_PERMANENTLY_301 = Status(301, "Moved Permanently")
+
+FOUND_302 = Status(302, "Found")
+
+TEMPORARY_REDIRECT_307 = Status(307, "Temporary Redirect")
+
+PERMANENT_REDIRECT_308 = Status(308, "Permanent Redirect")
+
+BAD_REQUEST_400 = Status(400, "Bad Request")
+
+UNAUTHORIZED_401 = Status(401, "Unauthorized")
+
+FORBIDDEN_403 = Status(403, "Forbidden")
+
+NOT_FOUND_404 = Status(404, "Not Found")
+
+METHOD_NOT_ALLOWED_405 = Status(405, "Method Not Allowed")
+
+TOO_MANY_REQUESTS_429 = Status(429, "Too Many Requests")
+
+INTERNAL_SERVER_ERROR_500 = Status(500, "Internal Server Error")
+
+NOT_IMPLEMENTED_501 = Status(501, "Not Implemented")
+
+SERVICE_UNAVAILABLE_503 = Status(503, "Service Unavailable")

@@ -1,39 +1,27 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 Dan Halbert for Adafruit Industries
+# SPDX-FileCopyrightText: Copyright (c) 2022 Michał Pokusa
 #
 # SPDX-License-Identifier: MIT
 """
-`adafruit_httpserver.methods.HTTPMethod`
+`adafruit_httpserver.methods`
 ====================================================
 * Author(s): Michał Pokusa
 """
 
 
-class HTTPMethod:  # pylint: disable=too-few-public-methods
-    """Enum with HTTP methods."""
+GET = "GET"
 
-    GET = "GET"
-    """GET method."""
+POST = "POST"
 
-    POST = "POST"
-    """POST method."""
+PUT = "PUT"
 
-    PUT = "PUT"
-    """PUT method"""
+DELETE = "DELETE"
 
-    DELETE = "DELETE"
-    """DELETE method"""
+PATCH = "PATCH"
 
-    PATCH = "PATCH"
-    """PATCH method"""
+HEAD = "HEAD"
 
-    HEAD = "HEAD"
-    """HEAD method"""
+OPTIONS = "OPTIONS"
 
-    OPTIONS = "OPTIONS"
-    """OPTIONS method"""
+TRACE = "TRACE"
 
-    TRACE = "TRACE"
-    """TRACE method"""
-
-    CONNECT = "CONNECT"
-    """CONNECT method"""
+CONNECT = "CONNECT"

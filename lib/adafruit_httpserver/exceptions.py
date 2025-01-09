@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 Dan Halbert for Adafruit Industries
+# SPDX-FileCopyrightText: Copyright (c) 2023 Michał Pokusa
 #
 # SPDX-License-Identifier: MIT
 """
@@ -6,6 +6,18 @@
 ====================================================
 * Author(s): Michał Pokusa
 """
+
+
+class ServerStoppedError(Exception):
+    """
+    Raised when ``.poll`` is called on a stopped ``Server``.
+    """
+
+
+class AuthenticationError(Exception):
+    """
+    Raised by ``require_authentication`` when the ``Request`` is not authorized.
+    """
 
 
 class InvalidPathError(Exception):
@@ -34,9 +46,9 @@ class BackslashInPathError(InvalidPathError):
         super().__init__(f"Backslash in path: {path}")
 
 
-class ResponseAlreadySentError(Exception):
+class ServingFilesDisabledError(Exception):
     """
-    Another ``HTTPResponse`` has already been sent. There can only be one per ``HTTPRequest``.
+    Raised when ``root_path`` is not set and there is no handler for ``request``.
     """
 
 
