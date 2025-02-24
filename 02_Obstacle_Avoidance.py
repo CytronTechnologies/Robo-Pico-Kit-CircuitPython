@@ -12,6 +12,7 @@ import pwmio
 from adafruit_motor import motor
 import adafruit_hcsr04
 
+# Ultrasonic Sensor Setup
 sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.GP16, echo_pin=board.GP17)
 
 # Left Motor
@@ -21,9 +22,12 @@ PWM_M1B = board.GP9
 PWM_M2A = board.GP10
 PWM_M2B = board.GP11
 
+# Button Setup
+execute_button = digitalio.DigitalInOut(board.GP20)
+execute_button.direction = digitalio.Direction.INPUT
+execute_button.pull = digitalio.Pull.UP
+
 # DC motor setup
-# DC Motors generate electrical noise when running that can reset the microcontroller in extreme
-# cases. A capacitor can be used to help prevent this.
 pwm_1a = pwmio.PWMOut(PWM_M1A, frequency=10000)
 pwm_1b = pwmio.PWMOut(PWM_M1B, frequency=10000)
 motorL = motor.DCMotor(pwm_1a, pwm_1b)
@@ -39,12 +43,23 @@ def Read_Ultrasonic():
     time.sleep(0.1)
     return sonar.distance
 
+print("Press GP20 button to start...")
+
 while True:
-    Distance = Read_Ultrasonic()
-    print(Distance)
-    if (Distance < 10):
-        Robot_Movement(0.1, 0.5) #Turn Left
-        print("Turn Left")
-        time.sleep(1)
-    else:
-        Robot_Movement(0.5, 0.54) #Forward   
+    if not execute_button.value:  # Button pressed (active low)
+        print("Button pressed! Starting obstacle avoidance robot...")
+        while True:
+            try:
+                Distance = Read_Ultrasonic()
+                print(f"Distance: {Distance} cm")
+                
+                if Distance < 10:  # Obstacle detected
+                    print("Turn Left")
+                    Robot_Movement(0.1, 0.5)  # Turn Left
+                    time.sleep(1)
+                else:  # No obstacle
+                    Robot_Movement(0.5, 0.54)  # Move Forward
+            except RuntimeError:
+                print("Ultrasonic sensor error. Retrying...")
+                Robot_Movement(0, 0)  # Stop in case of sensor error
+                time.sleep(0.1)

@@ -23,6 +23,11 @@ PWM_M1B = board.GP9
 PWM_M2A = board.GP10
 PWM_M2B = board.GP11
 
+# Press the GP20 push button on the ROBOPICO to execute the code
+execute_button = digitalio.DigitalInOut(board.GP20)
+execute_button.direction = digitalio.Direction.INPUT
+execute_button.pull = digitalio.Pull.UP
+
 # DC motor setup
 # DC Motors generate electrical noise when running that can reset the microcontroller in extreme
 # cases. A capacitor can be used to help prevent this.
@@ -37,14 +42,27 @@ def Robot_Movement(sL, sR):
     motorL.throttle = sL
     motorR.throttle = sR
 
+print("Press GP20 button to start...")
+
 while True:
-    Robot_Movement(0, 0) #Stop
-    time.sleep(2)
-    Robot_Movement(0.5, 0.54) #Forward
-    time.sleep(3)
-    Robot_Movement(-0.5, -0.52) #Backward
-    time.sleep(3)
-    Robot_Movement(0.1, 0.5) #Turn Left
-    time.sleep(3)
-    Robot_Movement(0.5, 0.1) #Turn Right
-    time.sleep(3)
+    if not execute_button.value:  # Button pressed (logic is active low)
+        print("Button pressed! Starting robot movement...")
+        # Stop
+        Robot_Movement(0, 0)
+        time.sleep(2)
+        # Forward
+        Robot_Movement(0.5, 0.54)
+        time.sleep(3)
+        # Backward
+        Robot_Movement(-0.5, -0.52)
+        time.sleep(3)
+        # Turn Left
+        Robot_Movement(0.1, 0.5)
+        time.sleep(3)
+        # Turn Right
+        Robot_Movement(0.5, 0.1)
+        time.sleep(3)
+        # Stop after completing movements
+        Robot_Movement(0, 0)
+        print("Movement sequence completed")
+        print("Waiting for button press...")
